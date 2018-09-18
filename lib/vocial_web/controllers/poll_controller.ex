@@ -14,12 +14,12 @@ defmodule VocialWeb.PollController do
     poll = Votes.new_poll()
 
     conn
-    |> render "new.html", poll: poll
+    |> render("new.html", poll: poll)
   end
 
   def create(conn, %{"poll" => poll_params, "options" => options}) do
     split_options = String.split(options, ",")
-    with {:ok, poll} <- Votes.create_poll_with_options(poll_params, split_options) do
+    with {:ok, _poll} <- Votes.create_poll_with_options(poll_params, split_options) do
       conn
       |> put_flash(:info, "Poll create successfully")
       |> redirect(to: poll_path(conn, :index))
