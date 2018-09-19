@@ -35,4 +35,16 @@ defmodule VocialWeb.PollController do
         |> redirect(to: poll_path(conn, :new))
     end
   end
+
+  def show(conn, %{"id" => id}) do
+    with poll <- Votes.get_poll(id), do: render(conn, "show.html", %{poll: poll})
+  end
+
+  def vote(conn, %{"id" => id}) do
+    with {:ok, option} <- Votes.vote_on_option(id) do
+      conn 
+      |> put_flash(:info, "Placed a vote for #{option.title}!")
+      |> redirect(to: poll_path(conn, :index))
+    end
+  end
 end
