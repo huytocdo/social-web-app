@@ -3,6 +3,8 @@ defmodule VocialWeb.PollController do
 
   alias Vocial.Votes
 
+  plug VocialWeb.VerifyUserSession when action in [:new, :create]
+
   def index(conn, _params) do
     polls = Votes.list_polls()
 
