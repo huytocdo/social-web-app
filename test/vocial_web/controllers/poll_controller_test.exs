@@ -34,7 +34,7 @@ defmodule VocialWeb.PollControllerTest do
     assert html_response(conn, 200) =~ "New Poll"
   end
 
-  test "GET /polls/new without a logged in user", %{conn: conn, user: user} do
+  test "GET /polls/new without a logged in user", %{conn: conn} do
     conn = get(conn, "/polls/new")
     assert redirected_to(conn) == "/"
     assert get_flash(conn, :error) == "You must be logged in to do that!"
