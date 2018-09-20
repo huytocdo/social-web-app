@@ -6,5 +6,12 @@
     <span id="vote-count-<%= option.id %>" class="vote-count"><%= option.votes %></span>
     <a href="/options/<%= option.id %>/vote" class="btn btn-primary vote-button-manual" data-option-id="<%= option.id %>">Vote</a>
     <br />
+    <%= if @poll.image do %>
+      <div class="image-display">
+        <img src="<%= @poll.image.url %>" alt="<%= @poll.image.alt %>" style="width: 350px;" />
+        <br />
+        <small><%= @poll.image.caption %></small>
+      </div>
+    <% end %>
   <% end %>
 </div>
