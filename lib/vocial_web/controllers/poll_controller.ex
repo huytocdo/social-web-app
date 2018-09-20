@@ -37,6 +37,10 @@ defmodule VocialWeb.PollController do
     end
   end
 
+  def create(conn, %{"poll" => _poll_params, "options" => _options}=params) do
+    create(conn, Map.put(params, "image_data", nil))
+  end
+
   def show(conn, %{"id" => id}) do
     with poll <- Votes.get_poll(id), do: render(conn, "show.html", %{poll: poll})
   end
