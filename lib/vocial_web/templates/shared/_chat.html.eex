@@ -1,5 +1,5 @@
 <br /> <br />
-<div class="chat-window container well" id="enable-chat-channel">
+<div class="chat-window container well" id="enable-chat-channel" data-chatroom="<%= @chatroom %>">
   <div class="row col-md-12">
     Your name:
     <input type="text" class="form-control author-input" placeholder="Name" />

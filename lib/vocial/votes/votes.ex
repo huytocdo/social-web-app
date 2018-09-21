@@ -11,14 +11,14 @@ defmodule Vocial.Votes do
   #Polls
   def list_polls do
     Repo.all(Poll) 
-    |> Repo.preload([:options, :image, :vote_records])
+    |> Repo.preload([:options, :image, :vote_records, :messages])
   end
 
   def new_poll do
     Poll.changeset(%Poll{}, %{})
   end
 
-  def get_poll(id), do: Repo.get!(Poll, id) |> Repo.preload([:options, :image, :vote_records])
+  def get_poll(id), do: Repo.get!(Poll, id) |> Repo.preload([:options, :image, :vote_records, :messages])
 
   def create_poll_with_options(poll_attrs, options, image_data \\ nil) do  
     Repo.transaction(fn -> 

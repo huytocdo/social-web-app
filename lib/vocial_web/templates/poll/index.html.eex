@@ -6,4 +6,3 @@
   <h2><%= gettext "Welcome to %{name}!", name: "Vocial" %></h2>
   <p class="lead">A social voting app!</p>
 </div>
-<%= render(VocialWeb.SharedView, "_chat.html") %>
