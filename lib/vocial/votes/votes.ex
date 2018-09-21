@@ -6,7 +6,9 @@ defmodule Vocial.Votes do
   alias Vocial.Votes.Option
   alias Vocial.Votes.Image
   alias Vocial.Votes.VoteRecord
+  alias Vocial.Votes.Message
 
+  #Polls
   def list_polls do
     Repo.all(Poll) 
     |> Repo.preload([:options, :image, :vote_records])
@@ -37,6 +39,8 @@ defmodule Vocial.Votes do
     |> Poll.changeset(attrs)
     |> Repo.insert()
   end
+
+  #Options
 
   def create_options(options, poll) do
     results = Enum.map(options, fn option -> 
@@ -91,6 +95,8 @@ defmodule Vocial.Votes do
     |> Repo.insert()
   end
 
+  #Image
+
   defp upload_file(%{"image" => image, "user_id" => user_id}, poll) do
     extension = Path.extname(image.filename)
     filename = "#{user_id}-#{poll.id}-image#{extension}"
@@ -112,6 +118,30 @@ defmodule Vocial.Votes do
 
     %Image{}
     |> Image.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def list_lobby_messages do
+    Repo.all(
+      from m in Message,
+      where: is_nil(m.poll_id),
+      order_by: [desc: :inserted_at],
+      limit: 100
+    )
+  end
+  def list_poll_messages(poll_id) do
+    Repo.all(
+      from m in Message,
+      where: m.poll_id == ^poll_id,
+      order_by: [desc: :inserted_at],
+      limit: 100,
+      preload: [:poll]
+    )
+  end
+
+  def create_message(attrs) do
+    %Message{}
+    |> Message.changeset(attrs)
     |> Repo.insert()
   end
 end
