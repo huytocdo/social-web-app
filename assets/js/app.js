@@ -9,4 +9,4 @@ import LivePolls from './poll';
 LivePolls.connect(socket);
 // Import the chat channel code to enable chat
 import LiveChat from './chat';
-LiveChat.connect(socket);
+LiveChat.loadChat(socket);
