@@ -2,7 +2,16 @@
   <%= render("_poll.html", %{poll: poll, conn: @conn}) %>
 <% end %>
 
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}!", name: "Vocial" %></h2>
-  <p class="lead">A social voting app!</p>
+<br />
+<div>
+  <%= if @opts.include_prev_page do %>
+    <div class="pull-left">
+      <%= link "<< Previous Page", to: poll_path(@conn, :index, [page: (@opts.page - 1), per_page: @opts.per_page]) %> 
+    </div>
+  <% end %>
+  <%= if @opts.include_next_page do %>
+    <div class="pull-right">
+      <%= link "Next Page >>", to: poll_path(@conn, :index, [page: (@opts.page + 1), per_page: @opts.per_page]) %> 
+    </div>
+  <% end %>
 </div>
