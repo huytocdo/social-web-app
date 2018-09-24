@@ -20,7 +20,7 @@ defmodule Vocial.Mixfile do
   def application do
     [
       mod: {Vocial.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :ueberauth, :ueberauth_twitter, :ueberauth_google]
     ]
   end
 
@@ -42,7 +42,11 @@ defmodule Vocial.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:comeonin, "~> 4.0.3"},
-      {:bcrypt_elixir, "~> 1.0.4"}
+      {:bcrypt_elixir, "~> 1.0.4"},
+      {:ueberauth, "~> 0.4"},
+      {:ueberauth_twitter, "~> 0.2"},
+      {:ueberauth_google, "~> 0.7"},
+      {:oauth, github: "tim/erlang-oauth"}
     ]
   end
 

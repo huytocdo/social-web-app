@@ -1,4 +1,6 @@
 <div>
+  <%= link "Login with Twitter", to: "/auth/twitter" %>
+  <hr />
   <%= form_tag session_path(@conn, :create) do %>
     <label>
       Username: <br />

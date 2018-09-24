@@ -28,4 +28,6 @@ npm-debug.log
 
 .vscode/
 
+.dev.env
+
 /assets/package-lock.json
